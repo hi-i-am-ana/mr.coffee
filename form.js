@@ -17,90 +17,43 @@ const emailEmptyAlert = document.getElementById('email-empty-alert');
 const emailFormatAlert = document.getElementById('email-format-alert');
 const messageEmptyAlert = document.getElementById('message-empty-alert');
 
-// Select close modal window button
+const submitButton = document.getElementById('submit-button');
+const modal = document.getElementById('modal');
 const closeModalButton = document.getElementById('close-modal-button');
 
-// Create variable to save validation status
-let validForm;
-
-contactForm.onsubmit = (event) => {
-  // Get values of input fields
-  const surnameValue = surname.value;
-  const nameValue = name.value;
-  const phoneValue = phone.value;
-  const emailValue = email.value;
-  const messageValue = message.value;
-
-  event.preventDefault();
-  clearValidation();
-
-  // Validate surname (not empty & valid format)
-  if (!inputEmptyValidation(surnameValue)) {
-    surnameEmptyAlert.style.display = 'block';
-    surname.style.border = 'solid 1px red';
-    validForm = false;
-  } else if (!inputNameValidation(surnameValue)) {
-    surnameFormatAlert.style.display = 'block';
-    surname.style.border = 'solid 1px red';
-    validForm = false;
-  };
-
-  // Validate name (not empty & valid format)
-  if (!inputEmptyValidation(nameValue)) {
-    nameEmptyAlert.style.display = 'block';
-    name.style.border = 'solid 1px red';
-    validForm = false;
-  } else if (!inputNameValidation(nameValue)) {
-    nameFormatAlert.style.display = 'block';
-    name.style.border = 'solid 1px red';
-    validForm = false;
-  };
-
-  // Validate phone (valid format)
-  if (!inputPhoneValidation(phoneValue) && inputEmptyValidation(phoneValue)) {
-    phoneFormatAlert.style.display = 'block';
-    phone.style.border = 'solid 1px red';
-    validForm = false;
-  };
-
-  // Validate email (not empty & valid format)
-  if (!inputEmptyValidation(emailValue)) {
-    emailEmptyAlert.style.display = 'block';
-    email.style.border = 'solid 1px red';
-    validForm = false;
-  } else if (!inputEmailValidation(emailValue)) {
-    emailFormatAlert.style.display = 'block';
-    email.style.border = 'solid 1px red';
-    validForm = false;
-  };
-
-  // Validate message (not empty)
-  if (!inputEmptyValidation(messageValue)) {
-    messageEmptyAlert.style.display = 'block';
-    message.style.border = 'solid 1px red';
-    validForm = false;
-  };
-
-  if (validForm) {
-    console.log(`${surname.name}: ${surnameValue}`);
-    console.log(`${name.name}: ${nameValue}`);
-    console.log(`${email.name}: ${emailValue}`);
-    console.log(`${phone.name}: ${phoneValue}`);
-    console.log(`${message.name}: ${messageValue}`);
-
-    event.target.reset();
-    clearValidation();
-
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-  };
+// Create object to:
+// 1) define if input needs to be checked if it's not empty
+// 2) define if input needs to be checked if it has valid format
+// 2) save validation status of each input
+let formValidStatus = {
+  surname: {
+    emptyValidation: true,
+    formatValidation: true,
+    validationStatus: false,
+  },
+  name: {
+    emptyValidation: true,
+    formatValidation: true,
+    validationStatus: false,
+  },
+  phone: {
+    emptyValidation: false,
+    formatValidation: true,
+    validationStatus: true,
+  },  
+  email: {
+    emptyValidation: true,
+    formatValidation: true,
+    validationStatus: false,
+  },
+  message: {
+    emptyValidation: true,
+    formatValidation: false,
+    validationStatus: false,
+  },
 };
 
-closeModalButton.onclick = () => {
-  modal.style.display = 'none';
-  document.body.style.overflow = '';
-};
-
+// Declare functions for input validation
 const inputEmptyValidation = (inputValue) => inputValue !== '';
 
 const inputNameValidation = (inputValue) => {
@@ -110,7 +63,7 @@ const inputNameValidation = (inputValue) => {
 
 const inputPhoneValidation = (inputValue) => {
   const phoneRegex = /^\d{10,}$/;
-  return phoneRegex.test(inputValue);
+  return phoneRegex.test(inputValue)  || inputValue === '';
 };
 
 const inputEmailValidation = (inputValue) => {
@@ -118,21 +71,63 @@ const inputEmailValidation = (inputValue) => {
   return emailRegex.test(inputValue);
 };
 
-const clearValidation = () => {
-  validForm = true;
+// Declare event handler function for oninput event listeners for inputs
+const inputValidation = (event, fieldEmptyAlert, fieldFormatAlert, inputEmptyValidation, inputFormatValidation, input) => {
+    input.emptyValidation ? fieldEmptyAlert.style.display = 'none' : false;
+    input.formatValidation ? fieldFormatAlert.style.display = 'none' : false;
 
-  surnameEmptyAlert.style.display = 'none';
-  surnameFormatAlert.style.display = 'none';
-  nameEmptyAlert.style.display = 'none';
-  nameFormatAlert.style.display = 'none';
-  emailEmptyAlert.style.display = 'none';
-  emailFormatAlert.style.display = 'none';
-  phoneFormatAlert.style.display = 'none';
-  messageEmptyAlert.style.display = 'none';
+  if (input.emptyValidation && !inputEmptyValidation(event.target.value)) {
+    fieldEmptyAlert.style.display = 'block';
+    event.target.style.border = 'solid 1px red';
+    input.validationStatus = false;
+    submitButton.setAttribute('disabled', 'true');
+  } else if (input.formatValidation && !inputFormatValidation(event.target.value)) {
+    fieldFormatAlert.style.display = 'block';
+    event.target.style.border = 'solid 1px red';
+    input.validationStatus = false;
+    submitButton.setAttribute('disabled', 'true');
+  } else {
+    input.emptyValidation ? fieldEmptyAlert.style.display = 'none' : false;
+    input.formatValidation ? fieldFormatAlert.style.display = 'none' : false;
+    event.target.style.border = '';
+    input.validationStatus = true;
+  };
 
-  surname.style.border = '';
-  name.style.border = '';
-  phone.style.border = '';
-  email.style.border = '';
-  message.style.border = '';
+  !Object.values(formValidStatus).some(input => (input.validationStatus !== true)) ? submitButton.removeAttribute('disabled') : false;
+}
+
+// Add oninput event listeners for inputs
+surname.addEventListener('input', (event) => inputValidation(event, surnameEmptyAlert, surnameFormatAlert, inputEmptyValidation, inputNameValidation, formValidStatus.surname));
+name.addEventListener('input', (event) => inputValidation(event, nameEmptyAlert, nameFormatAlert, inputEmptyValidation, inputNameValidation, formValidStatus.name));
+phone.addEventListener('input', (event) => inputValidation(event, '', phoneFormatAlert, '', inputPhoneValidation, formValidStatus.phone));
+email.addEventListener('input', (event) => inputValidation(event, emailEmptyAlert, emailFormatAlert, inputEmptyValidation, inputEmailValidation, formValidStatus.email));
+message.addEventListener('input', (event) => inputValidation(event, messageEmptyAlert, '', inputEmptyValidation, '', formValidStatus.message));
+
+// Add form onsubmit event listener
+contactForm.onsubmit = (event) => {
+  event.preventDefault();
+  
+  console.log(`${surname.name}: ${surname.value}`);
+  console.log(`${name.name}: ${name.value}`);
+  console.log(`${email.name}: ${email.value}`);
+  console.log(`${phone.name}: ${phone.value}`);
+  console.log(`${message.name}: ${message.value}`);
+
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+
+  event.target.reset();
+
+  formValidStatus.surname.validationStatus = false;
+  formValidStatus.name.validationStatus = false;
+  formValidStatus.phone.validationStatus = true;
+  formValidStatus.email.validationStatus = false;
+  formValidStatus.message.validationStatus = false;
+  submitButton.setAttribute('disabled', 'true');
+};
+
+// Add close modal button onclick event listener
+closeModalButton.onclick = () => {
+  modal.style.display = 'none';
+  document.body.style.overflow = '';
 };
