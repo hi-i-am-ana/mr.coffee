@@ -1,0 +1,62 @@
+.about-item {
+  display: flex;
+  align-items: center;
+}
+
+.about-item-text {
+  width: 60%;
+}
+
+.about-item-text > p {
+  margin-top: 5rem;
+}
+
+.about-item-image {
+  width: 40%;
+}
+
+#about-coffee {
+  padding-right: 10rem;
+}
+
+#about-cafe {
+  padding-left: 10rem;
+}
+
+/* media 768 */
+@media screen and (max-width: 768px) {
+  .about-item p {
+    margin-top: 2rem;
+  }
+
+  #about-coffee {
+    padding-right: 4rem;
+  }
+  
+  #about-cafe {
+    padding-left: 4rem;
+  }
+}
+/* end media 768 */
+
+/* media 576 */
+@media screen and (max-width: 576px) {
+  .about-item {
+    flex-direction: column;
+  }
+
+  .about-item-text {
+    width: 100%;
+    order: 2;
+  }
+
+  #about-coffee, #about-cafe {
+    padding: 0;
+  }
+
+  .about-item-image {
+    width: 80%;
+    margin-bottom: 5rem;
+  }
+}
+/* end media 576 */

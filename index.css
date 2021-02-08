@@ -1,0 +1,148 @@
+/* general styles */
+.home-page-section {
+  text-align: center;
+  position: relative;
+}
+
+.home-page-section > h2 {
+  font-weight: 700;
+}
+/* end general styles */
+
+
+/* hero section */
+.hero-image {
+  width: 100%;
+}
+
+#hero-section > h1 {
+  position: absolute;
+  top: 10rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+}
+/* end hero section */
+
+/* features section */
+#features-section > h2 {
+  width: 50%;
+  margin: auto;
+}
+
+.features-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 5rem 0;
+  color: #ffffff;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 31%;
+  padding: 3rem;
+  background-color: #bbc1c9;
+  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.3);
+}
+
+.feature-item-logo {
+  width: 35%;
+}
+
+.feature-item > h3 {
+  margin: 3rem 0;
+  text-shadow: 0.5px 0.5px 2px #000000;
+}
+
+.feature-item-text {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+/* end features section */
+
+/* program section */
+.program-container-header {
+  display: flex;
+  align-items: center;
+  margin: 5rem 0;
+}
+
+.program-container-header > h3 {
+  margin-left: 4rem;
+}
+
+.program-container-header > img {
+  width: 8rem;
+}
+
+.program-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8rem;
+}
+
+.program-item {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.program-item-text {
+  margin-top: 5rem;
+  font-weight: 700;
+}
+
+.invite-to-contact {
+  width: 50%;
+  margin: 5rem auto;
+  font-size: 2.3rem;
+}
+/* end program section */
+
+/* media 768 */
+@media screen and (max-width: 768px) {
+  #features-section > h2 {
+    width: 90%;
+  }
+
+  .feature-item {
+    padding: 2rem;
+  }
+}
+/* end media 768 */
+
+/* media 576 */
+@media screen and (max-width: 576px) {
+  .features-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature-item {
+    width: 80%;
+  }
+
+  .feature-item + .feature-item {
+    margin-top: 5rem;
+  }
+
+  .program-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .program-item {
+    width: 100%;
+  }
+
+  .program-item + .program-item {
+    margin-top: 8rem;
+  }
+
+  .invite-to-contact {
+    width: 100%;
+  }
+}
+/* end media 576 */

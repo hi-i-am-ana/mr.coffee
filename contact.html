@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Find us at 15 place Jules Guesde Paris or get in touch with us by phone +33946257845 or via email contact@mr-coffee.com.">
   <link rel="stylesheet" href="application.css">
+  <link rel="stylesheet" href="contact.css">
+  <script src="form.js" defer></script>
   <title>Contact Us | Mr.Coffee</title>
 </head>
 
@@ -23,9 +25,85 @@
   </header>
 
   <main>
-    <section id="contact-container">
+    <!-- FORM section -->
+    <section class="contact-page-section">
+      <h2>Dites nous tout!</h2>
+
+      <form id="contact-form" novalidate>
+        <!-- surname field -->
+        <div class="contact-form-item">
+          <label for="surname">Nom <span>*</span></label>
+          <input class="field" type="text" id="surname" name="surname">
+          <p class="contact-form-alert" id="surname-empty-alert">
+            Please enter your surname
+          </p>
+          <p class="contact-form-alert" id="surname-format-alert">
+            Surname must start with a letter and contain only letters, hyphens, apostrophes and spaces
+          </p>
+        </div>
+
+        <!-- name field -->
+        <div class="contact-form-item">
+          <label for="name">Prénom <span>*</span></label>
+          <input class="field" type="text" id="name" name="name">
+          <p class="contact-form-alert" id="name-empty-alert">
+            Please enter your name
+          </p>
+          <p class="contact-form-alert" id="name-format-alert">
+            Name must start with a letter and contain only letters, hyphens, apostrophes and spaces
+          </p>
+        </div>
+
+        <!-- phone field -->
+        <div class="contact-form-item">
+          <label for="phone">Téléphone</label>
+          <input class="field" type="tel" id="phone" name="phone">
+          <p class="contact-form-alert" id="phone-format-alert">
+            Phone number must be at least 10 characters long and contain numbers only
+          </p>
+        </div>
+
+        <!-- email field -->
+        <div class="contact-form-item">
+          <label for="email">Adresse mail <span>*</span></label>
+          <input class="field" type="email" id="email" name="email">
+          <p class="contact-form-alert" id="email-empty-alert">
+            Please enter your email address
+          </p>
+          <p class="contact-form-alert" id="email-format-alert">
+            Email address must be in a valid email address format
+          </p>
+        </div>
+
+        <!-- message field -->
+        <div class="contact-form-item">
+          <label for="message">Message <span>*</span></label>
+          <textarea class="field" id="message" name="message" rows="5" placeholder="Tapez votre message ici"></textarea>
+          <p class="contact-form-alert" id="message-empty-alert">
+            Please enter your message
+          </p>
+        </div>
+
+        <button class="button" type="submit">ENVOYER</button>
+      </form>
+
+      <div class="modal" id="modal">
+        <div class="modal-inner">
+          <img class="modal-logo" src="assets/logo_dark.png" alt="mr.coffe black logo">
+          <div class="modal-content">
+            <p class="modal-header">MERCI</p>
+            <p class="modal-header">Votre message a bien été envoyé!</p>
+            <p class="modal-text">Nous essaierons d’y répondre au mieux dans les plus brefs délais. À bientot chez Mr.Coffee</p>
+            <button class="button" id="close-modal-button" type="button">FERMER</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT section -->
+    <section class="contact-page-section">
       <h2>On vous attend!</h2>
-      <div id="contact">
+      <div class="contact">
         <div class="contact-item">
           <p><strong>Mr.Coffee</strong></p>
           <p>15 place Jules Guesde</p>
@@ -36,7 +114,7 @@
           <p>Mail: contact@mr-coffee.com</p>
         </div>
       </div>
-      <img id="map-image" src="assets/carte_contact.png" alt="mr.coffee map">
+      <img class="map-image" src="assets/carte_contact.png" alt="mr.coffee map">
     </section>
   </main>
 

@@ -1,6 +1,7 @@
 @import url('https://fonts.cdnfonts.com/css/avenir-next-cyr');
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@700&display=swap');
 
+/* general styles */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -33,7 +34,39 @@ a {
 
 h2 {
   font-family: 'Avenir Next Cyr Medium', sans-serif;
+  font-weight: 400;
 }
+
+.button {
+  padding: 2rem 7rem;
+  background-color: #6b7c8c;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.3);
+  font-family: 'Avenir Next Cyr Medium', sans-serif;
+  color: #ffffff;
+  font-size: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button {
+  display: block;
+  margin: auto;
+}
+
+.button:hover {
+  background-color: #606f7e;  
+}
+
+.button:active {
+  background-color: #556370;
+}
+
+button:focus {
+  outline: 0;
+}
+/* end general styles */
 
 /* header */
 nav {
@@ -42,7 +75,6 @@ nav {
   z-index: 1;
   width: 100%;
   display: flex;
-  /* justify-content: flex-end; */
   align-items: center;
   background-color: #6b7c8c;
   font-family: 'Archivo', sans-serif;
@@ -53,11 +85,7 @@ nav {
 
 .nav-logo {
   margin: 0 auto 0 2rem;
-  height: 40px;
-  /* position: absolute;
-  left: 2rem;
-  top: 50%;
-  transform: translate(0, -50%); */
+  height: 4rem;
 }
 
 nav > ul {
@@ -77,170 +105,9 @@ nav > ul a:hover {
 .header-logo {
   display: block;
   margin: 6rem auto 0;
-  height: 120px;
+  height: 12rem;
 }
 /* end header */
-
-/* homepage */
-#hero {
-  position: relative;
-  color: #ffffff;
-  text-align: center;
-}
-
-#hero-image {
-  width: 100%;
-}
-
-#hero > h1 {
-  position: absolute;
-  top: 10rem;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-#features, #program {
-  text-align: center;
-}
-
-#features > h2 {
-  width: 50%;
-  margin: auto;
-}
-
-#features-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 5rem;
-  color: #ffffff;
-}
-
-.feature-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 31%;
-  padding: 3rem;
-  margin-bottom:  5rem;
-  background-color: #bbc1c9;
-  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.3);
-}
-
-.feature-item-logo {
-  width: 35%;
-}
-
-.feature-item > h3 {
-  margin: 3rem 0;
-  text-shadow: 0.5px 0.5px 2px #000000;
-}
-
-.feature-item-text {
-  font-size: 1.6rem;
-  font-weight: 700;
-}
-
-#more-button {
-  padding: 2rem 7rem;
-  background-color: #6b7c8c;
-  border: none;
-  border-radius: 5px;
-  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.3);
-  color: #ffffff;
-  font-size: inherit;
-}
-
-#program-container-header {
-  display: flex;
-  align-items: center;
-  margin: 5rem 0;
-}
-
-#program-container-header > h3 {
-  margin-left: 4rem;
-}
-
-#program-container-header > img {
-  width: 80px;
-}
-
-#program-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.program-item {
-  display: flex;
-  flex-direction: column;
-  width: 40%;
-}
-
-.program-item-text {
-  margin: 5rem 0 8rem;
-  font-weight: 700;
-}
-
-#invite-to-contact {
-  width: 50%;
-  margin: 5rem auto;
-  font-size: 2.3rem;
-}
-/* end homepage */
-
-/* about page */
-.about-item {
-  display: flex;
-  align-items: center;
-}
-
-.about-item h2, /*contact page*/ #contact-container > h2 {
-  font-weight: 400;
-}
-
-.about-item p {
-  margin-top: 5rem;
-}
-
-.about-item-text {
-  width: 60%;
-}
-
-#about-coffee {
-  padding-right: 10rem;
-}
-
-#about-cafe {
-  padding-left: 10rem;
-}
-
-.about-item-image {
-  width: 40%;
-}
-/* end about page */
-
-/* contact page */
-#contact-container {
-  width: 65%;
-  margin: auto;
-}
-
-#contact-container > h2 {
-  text-align: center;
-}
-
-#contact {
-  margin: 7rem 0;
-}
-
-.contact-item {
-  margin-bottom: 3rem;
-}
-
-#map-image {
-  display: block;
-  width: 100%;
-}
-/* end contact page */
 
 /* footer */
 footer {
@@ -264,7 +131,7 @@ footer {
 }
 
 .social-links > a > img {
-  height: 30px;
+  height: 3rem;
 }
 
 .footer-logo {
@@ -272,39 +139,23 @@ footer {
   left: 3rem;
   top: 50%;
   transform: translate(0, -50%);
-  height: 60px;
+  height: 6rem;
 }
 /* end footer */
 
-/* media 768*/
+/* media 768 */
 @media screen and (max-width: 768px) {
+  html {
+    font-size: 9px;
+  }
+
   main {
     width: 90%;
   }
-
-  #features > h2 {
-    width: 90%;
-  }
-
-  .feature-item {
-    padding: 2rem;
-  }
-
-  .about-item p {
-    margin-top: 2rem;
-  }
-
-  #about-coffee {
-    padding-right: 2rem;
-  }
-  
-  #about-cafe {
-    padding-left: 2rem;
-  }
 }
-/* end media 768*/
+/* end media 768 */
 
-/* media 576*/
+/* media 576 */
 @media screen and (max-width: 576px) {
   html {
     font-size: 8px;
@@ -317,46 +168,5 @@ footer {
   .header-logo {
     margin-top: 15rem;
   }
-
-  #features-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .feature-item {
-    width: 80%;
-  }
-
-  #program-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .program-item {
-    width: 100%;
-  }
-
-  #invite-to-contact {
-    width: 100%;
-  }
-
-  .about-item {
-    flex-direction: column;
-  }
-
-  .about-item-text {
-    width: 100%;
-    padding: 0;
-    order: 2;
-  }
-
-  .about-item-image {
-    width: 80%;
-    margin-bottom: 5rem;
-  }
-
-  #contact-container {
-    width: 100%;
-  }
 }
-/* end media 576*/
+/* end media 576 */
