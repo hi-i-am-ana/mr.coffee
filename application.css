@@ -160,6 +160,10 @@ nav > ul a:hover {
   margin-left: 4rem;
 }
 
+#program-container-header > img {
+  width: 80px;
+}
+
 #program-container {
   display: flex;
   justify-content: space-between;
